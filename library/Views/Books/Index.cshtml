@@ -1,0 +1,39 @@
+﻿@model List<Book>
+@{
+    ViewData["Title"] = "Books";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+        <h1 class="mb-0">Books</h1>
+        <p class="text-muted mb-0">@Model.Count books in the catalogue</p>
+    </div>
+    @* Task 9 puts the Add a book button here *@
+</div>
+
+<table class="table table-striped table-hover align-middle">
+    <thead class="table-dark">
+        <tr>
+            <th class="text-end" style="width:4rem">#</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th class="text-end">Price</th>
+            <th style="width:10rem"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td class="text-end">@book.BookId</td>
+                <td>@book.Title</td>
+                <td><span class="badge text-bg-secondary">@(book.Category ?? "—")</span></td>
+                <td class="text-end">@(book.Price?.ToString("N2") ?? "—")</td>
+                <td class="text-end">
+                    @* Task 10 puts the Edit button here *@
+                    @* Task 11 puts the Delete button here *@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
