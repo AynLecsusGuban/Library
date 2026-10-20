@@ -1,31 +1,478 @@
+```css
+/* ============================================
+   LIBRARY HUB - FANTASY ADVENTURE THEME
+   Inspired by Genshin Impact's visual atmosphere
+   File: wwwroot/css/site.css
+   ============================================ */
 html {
-  font-size: 14px;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+    scroll-behavior: smooth;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+:root {
+    --gold: #e8c987;
+    --gold-light: #ffe9b0;
+    --purple: #a99aff;
+    --purple-dark: #7567d8;
+    --blue: #8dc9ff;
+    --background: #101a38;
+    --panel: rgba(24, 38, 80, 0.91);
+    --panel-light: rgba(47, 62, 119, 0.65);
+    --text: #f7f2e8;
+    --muted: #c1c9e2;
+    --border: rgba(232, 201, 135, 0.40);
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin: 0;
+    color: var(--text);
+    font-family: "Segoe UI", Georgia, serif;
+    line-height: 1.7;
+    background: radial-gradient( ellipse at 50% 0%, rgba(104, 143, 226, 0.30), transparent 55% ), radial-gradient( ellipse at 90% 70%, rgba(119, 92, 202, 0.18), transparent 45% ), linear-gradient( 150deg, #101a38, #1a2450 55%, #111b3b );
+    background-attachment: fixed;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* MAIN CONTAINER */
+
+.container {
+    max-width: 1240px;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+/* HEADINGS */
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--gold-light);
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    letter-spacing: 0.3px;
 }
+
+h1 {
+    font-size: 2.2rem;
+}
+
+p {
+    color: var(--muted);
+}
+
+/* NAVBAR */
+
+.navbar {
+    position: relative;
+    z-index: 1000;
+    background: rgba(15, 25, 58, 0.94) !important;
+    border-bottom: 1px solid var(--border);
+    padding: 14px 0;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.20), 0 1px 12px rgba(169, 154, 255, 0.08);
+    backdrop-filter: blur(16px);
+}
+
+    .navbar > .container,
+    .navbar > .container-fluid {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+.navbar-brand {
+    color: var(--gold-light) !important;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    white-space: nowrap;
+    margin-right: 25px;
+    text-shadow: 0 0 15px rgba(232, 201, 135, 0.18);
+}
+
+    .navbar-brand:hover {
+        color: white !important;
+    }
+
+/* Books, Members and Privacy */
+
+.navbar-collapse {
+    min-width: 0;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+}
+
+    .navbar-nav .nav-link {
+        color: var(--muted) !important;
+        padding: 9px 14px !important;
+        margin: 0;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        white-space: nowrap;
+        transition: all 0.25s ease;
+    }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link:focus {
+            color: var(--gold-light) !important;
+            background: rgba(169, 154, 255, 0.13);
+            border-color: var(--border);
+            box-shadow: 0 0 14px rgba(169, 154, 255, 0.12);
+        }
+
+/* MOBILE MENU */
+
+.navbar-toggler {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+    .navbar-toggler:focus {
+        box-shadow: 0 0 0 0.2rem rgba(169, 154, 255, 0.25);
+    }
+
+/* MAIN CONTENT */
+
+main {
+    padding-top: 28px;
+    padding-bottom: 35px;
+}
+
+/* CARDS - FANTASY GLASS PANELS */
+
+.card {
+    color: var(--text);
+    background: linear-gradient( 145deg, rgba(39, 53, 105, 0.92), rgba(20, 32, 72, 0.95) );
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+    .card:hover {
+        border-color: var(--gold);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.24), 0 0 15px rgba(169, 154, 255, 0.10);
+    }
+
+.card-header {
+    color: var(--gold-light);
+    background: rgba(169, 154, 255, 0.10);
+    border-bottom: 1px solid var(--border);
+    padding: 17px 22px;
+    font-weight: 700;
+}
+
+.card-body {
+    padding: 24px;
+}
+
+/* BUTTONS */
+
+.btn {
+    padding: 9px 16px;
+    border-radius: 7px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+
+.btn-primary {
+    color: #172346;
+    background: linear-gradient( 135deg, #f2dba7, #d5b46c );
+    border: 1px solid var(--gold-light);
+    box-shadow: 0 3px 12px rgba(232, 201, 135, 0.12);
+}
+
+    .btn-primary:hover,
+    .btn-primary:focus {
+        color: #101a38;
+        background: linear-gradient( 135deg, #fff0c5, #e8c987 );
+        border-color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 18px rgba(232, 201, 135, 0.23);
+    }
+
+.btn-outline-secondary {
+    color: var(--purple);
+    background: transparent;
+    border-color: rgba(169, 154, 255, 0.55);
+}
+
+    .btn-outline-secondary:hover {
+        color: white;
+        background: rgba(169, 154, 255, 0.16);
+        border-color: var(--purple);
+    }
+
+.btn-danger {
+    color: white;
+    background: #a83d60;
+    border-color: #bd5375;
+}
+
+    .btn-danger:hover {
+        color: white;
+        background: #c94e75;
+    }
+
+.btn-outline-danger {
+    color: #ffb3c6;
+    border-color: rgba(255, 179, 198, 0.55);
+}
+
+.btn-success {
+    color: #122e35;
+    background: #a4dfcb;
+    border-color: #a4dfcb;
+}
+
+/* TABLES */
+
+.table {
+    margin-bottom: 0;
+    color: var(--text);
+    border-color: rgba(232, 201, 135, 0.18);
+    vertical-align: middle;
+}
+
+    .table > :not(caption) > * > * {
+        color: var(--text);
+        background-color: transparent;
+        padding: 14px 16px;
+        border-bottom-color: rgba(232, 201, 135, 0.16);
+    }
+
+    .table thead th {
+        color: var(--gold-light);
+        background: rgba(169, 154, 255, 0.13);
+        border-bottom: 1px solid var(--border);
+        font-size: 0.76rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.7px;
+        white-space: nowrap;
+    }
+
+.table-hover > tbody > tr:hover > * {
+    color: white;
+    background: rgba(169, 154, 255, 0.10);
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* FORMS */
+
+.form-label {
+    color: var(--gold-light);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.form-control,
+.form-select {
+    width: 100%;
+    min-height: 43px;
+    color: var(--text);
+    background-color: rgba(13, 23, 52, 0.95);
+    border: 1px solid rgba(169, 154, 255, 0.35);
+    border-radius: 7px;
+    padding: 10px 12px;
+    font-family: inherit;
+}
+
+    .form-control::placeholder {
+        color: #a9b5d5;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        color: white;
+        background-color: #172448;
+        border-color: var(--gold);
+        box-shadow: 0 0 0 0.2rem rgba(232, 201, 135, 0.12);
+    }
+
+    .form-select option {
+        color: white;
+        background: #172448;
+    }
+
+/* ORIGINAL FLOATING LABEL SUPPORT */
+
+.form-floating > .form-control-plaintext::placeholder,
+.form-floating > .form-control::placeholder {
+    color: var(--muted);
+    text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder,
+.form-floating > .form-control:focus::placeholder {
+    text-align: start;
+}
+
+/* BADGES */
+
+.badge {
+    padding: 7px 11px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.bg-primary-subtle {
+    background: rgba(169, 154, 255, 0.20) !important;
+}
+
+.text-primary {
+    color: var(--purple) !important;
+}
+
+/* LINKS */
+
+a {
+    transition: color 0.2s ease;
+}
+
+    a:not(.btn) {
+        color: var(--blue);
+    }
+
+        a:not(.btn):hover {
+            color: var(--gold-light);
+        }
+
+/* MUTED TEXT */
+
+.text-muted {
+    color: var(--muted) !important;
+}
+
+/* ALERTS */
+
+.alert {
+    color: var(--text);
+    background: rgba(39, 53, 105, 0.90);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+}
+
+/* VALIDATION */
+
+.text-danger,
+.field-validation-error {
+    color: #ffb3c6 !important;
+    font-size: 0.8rem;
+}
+
+/* DIVIDERS */
+
+hr {
+    border-color: var(--border);
+    opacity: 1;
+}
+
+/* ACCESSIBILITY */
+
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--gold-light);
+    outline-offset: 3px;
+}
+
+/* RESPONSIVE NAVIGATION */
+
+@media (max-width: 991.98px) {
+    .navbar > .container,
+    .navbar > .container-fluid {
+        justify-content: space-between;
+    }
+
+    .navbar-collapse {
+        flex-basis: 100%;
+        width: 100%;
+        padding-top: 12px;
+    }
+
+    .navbar-nav {
+        align-items: stretch;
+        gap: 3px;
+    }
+
+        .navbar-nav .nav-link {
+            white-space: normal;
+            overflow-wrap: anywhere;
+        }
+}
+
+/* TABLET AND MOBILE */
+
+@media (max-width: 767.98px) {
+    h1 {
+        font-size: 1.7rem;
+    }
+
+    h2 {
+        font-size: 1.35rem;
+    }
+
+    main {
+        padding-top: 16px;
+    }
+
+    .card-body {
+        padding: 17px;
+    }
+
+    .table > :not(caption) > * > * {
+        padding: 10px 8px;
+        font-size: 0.8rem;
+    }
+
+    .table thead th {
+        font-size: 0.68rem;
+    }
+
+    .btn {
+        padding: 8px 11px;
+    }
+}
+
+/* SMALL SCREENS */
+
+@media (max-width: 480px) {
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    main {
+        padding-top: 12px;
+    }
+
+    .container {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+}
+
+```
