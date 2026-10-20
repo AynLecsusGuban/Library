@@ -1,7 +1,10 @@
+using library.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<NoteRepository>();
 
 var app = builder.Build();
 

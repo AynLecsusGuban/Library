@@ -1,0 +1,29 @@
+﻿
+@model library.Models.Note
+
+@{
+    ViewData["Title"] = "Delete Note";
+}
+
+<div class="container py-4">
+    <h1>Delete Note</h1>
+    <p>Are you sure you want to delete this note?</p>
+
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5>@Model.Title</h5>
+            <p>@(Model.Body ?? "No body provided.")</p>
+            <p class="text-muted">
+                @Model.CreatedOn.ToString("MMM dd, yyyy")
+            </p>
+        </div>
+    </div>
+
+    <form asp-action="Delete" asp-route-id="@Model.NoteId"
+          method="post">
+        <button type="submit" class="btn btn-danger">
+            Yes, Delete
+        </button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
