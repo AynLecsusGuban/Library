@@ -30,7 +30,7 @@
                 <td><span class="badge text-bg-secondary">@(book.Category ?? "—")</span></td>
                 <td class="text-end">@(book.Price?.ToString("N2") ?? "—")</td>
                 <td class="text-end">
-                    @* Task 10 puts the Edit button here *@
+                    <a asp-action="Edit" asp-route-id="@book.BookId" class="btn btn-sm btn-outline-secondary">Edit</a>
                     @* Task 11 puts the Delete button here *@
                 </td>
             </tr>

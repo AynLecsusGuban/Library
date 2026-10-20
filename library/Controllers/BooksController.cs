@@ -41,4 +41,30 @@ public class BooksController : Controller
         return RedirectToAction(nameof(Index));
     }
 
+    // GET /Books/Edit/5 : the form, filled with book 5.
+    public async Task<IActionResult> Edit(long id)
+    {
+        var book = await _books.GetByIdAsync(id);
+        if (book == null)
+        {
+            return NotFound();
+        }
+        return View(book);
+    }
+
+    // POST /Books/Edit/5 : the changed form was submitted.
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(Book book)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(book);
+        }
+
+        await _books.UpdateAsync(book);
+        return RedirectToAction(nameof(Index));
+    }
+
+
 }
