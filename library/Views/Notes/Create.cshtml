@@ -1,0 +1,45 @@
+﻿
+@model library.Models.Note
+
+@{
+    ViewData["Title"] = "Add Note";
+}
+
+<div class="container py-4">
+    <h1>Add Note</h1>
+
+    <form asp-action="Create" method="post">
+        <div asp-validation-summary="ModelOnly"
+             class="text-danger"></div>
+
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title"
+                  class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Body" class="form-label"></label>
+            <textarea asp-for="Body" class="form-control"
+                      rows="5"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="CreatedOn" class="form-label">
+                Date
+            </label>
+            <input asp-for="CreatedOn" type="date"
+                   class="form-control" />
+            <span asp-validation-for="CreatedOn"
+                  class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Note</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
