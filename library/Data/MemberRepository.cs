@@ -1,4 +1,5 @@
-﻿using library.Models;
+﻿
+using library.Models;
 using Npgsql;
 
 namespace library.Data;
@@ -16,12 +17,40 @@ public class MemberRepository
     {
         return new Member
         {
-            member_id = reader.GetInt64(0),
-            full_name = reader.GetString(1),
-            email = reader.IsDBNull(2) ? null : reader.GetString(2),   // NULL becomes null
-            member_type = reader.GetString(3)
+            MemberId = reader.GetInt64(0),
+            FullName = reader.GetString(1),
+            Email = reader.IsDBNull(2) ? null : reader.GetString(2),
+            MemberType = reader.GetString(3)
         };
     }
 
-    const string sql = "SELECT member_id, full_name, email, member_type FROM lending.member ORDER BY full_name;";
+    public async Task<List<Member>> GetAllAsync()
+    {
+        const string sql = "SELECT member_id, full_name, email, member_type FROM lending.member ORDER BY full_name;";
+
+        var members = new List<Member>();
+
+        await using var command = _dataSource.CreateCommand(sql);
+        await using var reader = await command.ExecuteReaderAsync();
+
+        while (await reader.ReadAsync())
+        {
+            members.Add(ReadMember(reader));
+        }
+
+        return members;
+    }
+
+    public async Task AddAsync(Member member)
+    {
+        const string sql = "INSERT INTO lending.member (full_name, email, member_type) VALUES (@name, @email, @type);";
+
+        await using var command = _dataSource.CreateCommand(sql);
+        command.Parameters.AddWithValue("name", member.FullName);
+        command.Parameters.AddWithValue("email", (object?)member.Email ?? DBNull.Value);
+        command.Parameters.AddWithValue("type", member.MemberType);
+
+        await command.ExecuteNonQueryAsync();
+    }
+
 }
