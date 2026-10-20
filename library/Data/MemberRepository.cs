@@ -53,4 +53,40 @@ public class MemberRepository
         await command.ExecuteNonQueryAsync();
     }
 
+
+    public async Task<Member?> GetByIdAsync(long id)
+    {
+        const string sql = "SELECT member_id, full_name, email, member_type FROM lending.member WHERE member_id = @id;";
+
+        await using var command = _dataSource.CreateCommand(sql);
+        command.Parameters.AddWithValue("id", id);
+
+        await using var reader = await command.ExecuteReaderAsync();
+        return await reader.ReadAsync() ? ReadMember(reader) : null;
+    }
+
+    public async Task UpdateAsync(Member member)
+    {
+        const string sql = "UPDATE lending.member SET full_name = @name, email = @email, member_type = @type WHERE member_id = @id;";
+
+        await using var command = _dataSource.CreateCommand(sql);
+        command.Parameters.AddWithValue("name", member.FullName);
+        command.Parameters.AddWithValue("email", (object?)member.Email ?? DBNull.Value);
+        command.Parameters.AddWithValue("type", member.MemberType);
+        command.Parameters.AddWithValue("id", member.MemberId);
+
+        await command.ExecuteNonQueryAsync();
+    }
+
+    public async Task DeleteAsync(long id)
+    {
+        const string sql = "DELETE FROM lending.member WHERE member_id = @id;";
+
+        await using var command = _dataSource.CreateCommand(sql);
+        command.Parameters.AddWithValue("id", id);
+
+        await command.ExecuteNonQueryAsync();
+    }
+
+
 }

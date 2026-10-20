@@ -1,0 +1,34 @@
+﻿
+@model Member
+@{
+    ViewData["Title"] = "Add a member";
+}
+
+<h1 class="mb-3">Add a member</h1>
+
+<form asp-action="Create" method="post" class="card card-body" style="max-width:36rem">
+    <div class="mb-3">
+        <label asp-for="FullName" class="form-label"></label>
+        <input asp-for="FullName" class="form-control" />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="MemberType" class="form-label"></label>
+        <select asp-for="MemberType" class="form-select">
+            <option value="Regular">Regular</option>
+            <option value="Student">Student</option>
+            <option value="Faculty">Faculty</option>
+        </select>
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a asp-action="Index" class="btn btn-link">Cancel</a>
+    </div>
+</form>

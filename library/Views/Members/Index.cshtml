@@ -8,8 +8,9 @@
         <h1 class="mb-0">Members</h1>
         <p class="text-muted mb-0">@Model.Count members in the library</p>
     </div>
-    @* Task 14 puts the Add a member button here *@
+    <a asp-action="Create" class="btn btn-primary">Add a member</a>
 </div>
+
 
 <table class="table table-striped table-hover align-middle">
     <thead class="table-dark">
@@ -30,8 +31,7 @@
                 <td>@(member.Email ?? "—")</td>
                 <td>@member.MemberType</td>
                 <td class="text-end">
-                    @* Task 15 puts the Edit button here *@
-                    @* Task 16 puts the Delete button here *@
+                    <a asp-action="Edit" asp-route-id="@member.MemberId" class="btn btn-sm btn-outline-secondary">Edit</a>
                 </td>
             </tr>
         }

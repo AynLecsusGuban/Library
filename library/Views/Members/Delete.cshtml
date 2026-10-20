@@ -1,0 +1,27 @@
+﻿
+@model Member
+@{
+    ViewData["Title"] = "Delete a member";
+}
+
+<h1 class="mb-3">Delete a member</h1>
+
+<div class="card card-body" style="max-width:36rem">
+    <p>Are you sure you want to delete this member?</p>
+
+    <dl class="row mb-2">
+        <dt class="col-4">Name</dt>
+        <dd class="col-8">@Model.FullName</dd>
+
+        <dt class="col-4">Email</dt>
+        <dd class="col-8">@(Model.Email ?? "—")</dd>
+
+        <dt class="col-4">Member Type</dt>
+        <dd class="col-8">@Model.MemberType</dd>
+    </dl>
+
+    <form asp-action="Delete" asp-route-id="@Model.MemberId" method="post">
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-action="Index" class="btn btn-link">Cancel</a>
+    </form>
+</div>
