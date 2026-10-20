@@ -1,0 +1,25 @@
+﻿@model Book
+@{
+    ViewData["Title"] = "Delete a book";
+}
+
+<h1 class="mb-3">Delete a book</h1>
+
+<div class="card card-body" style="max-width:36rem">
+
+    <p>Are you sure you want to delete this book?</p>
+    <dl class="row mb-2">
+        <dt class="col-4">Title</dt>
+        <dd class="col-8">@Model.Title</dd>
+        <dt class="col-4">Category</dt>
+        <dd class="col-8">@(Model.Category ?? "—")</dd>
+        <dt class="col-4">Price</dt>
+        <dd class="col-8">@(Model.Price?.ToString("N2") ?? "—")</dd>
+    </dl>
+    <p class="text-muted small">Any loans of this book are deleted with it.</p>
+
+    <form asp-action="Delete" asp-route-id="@Model.BookId" method="post">
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-action="Index" class="btn btn-link">Cancel</a>
+    </form>
+</div>
